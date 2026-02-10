@@ -1,142 +1,156 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Happy Valentine ❤️</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #ff758c, #ff7eb3);
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      color: #fff;
-    }
-    .card {
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(10px);
-      border-radius: 20px;
-      padding: 40px 30px;
-      text-align: center;
-      max-width: 350px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-      animation: pop 1s ease;
-    }
-    @keyframes pop {
-      from { transform: scale(0.8); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-    h1 {
-      margin-top: 0;
-      font-size: 2.2rem;
-    }
-    p {
-      font-size: 1.1rem;
-      line-height: 1.5;
-    }
-    button {
-      margin-top: 20px;
-      padding: 12px 25px;
-      font-size: 1rem;
-      border: none;
-      border-radius: 25px;
-      background: #fff;
-      color: #ff4d6d;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-    }
-    .heart {
-      position: absolute;
-      bottom: -20px;
-      font-size: 20px;
-      animation: floatUp 6s linear infinite;
-      opacity: 0.8;
-    }
-    @keyframes floatUp {
-      from { transform: translateY(0) scale(1); opacity: 1; }
-      to { transform: translateY(-110vh) scale(1.5); opacity: 0; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Valentine 💖</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: background 1s ease;
+}
+
+.card {
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(12px);
+  border-radius: 25px;
+  padding: 30px;
+  width: 90%;
+  max-width: 360px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  z-index: 2;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 20px;
+  margin-bottom: 15px;
+}
+
+#message {
+  font-size: 18px;
+  color: #fff;
+  margin-bottom: 20px;
+  min-height: 60px;
+}
+
+button {
+  padding: 14px 28px;
+  font-size: 18px;
+  border-radius: 30px;
+  border: none;
+  background: #ff4d6d;
+  color: white;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+button:hover {
+  transform: scale(1.08);
+}
+
+/* Hearts background */
+.heart {
+  position: absolute;
+  color: rgba(255,255,255,0.6);
+  font-size: 20px;
+  animation: floatUp 6s linear infinite;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(100vh) scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-10vh) scale(1.4);
+    opacity: 0;
+  }
+}
+</style>
 </head>
+
 <body>
-<audio id="bgMusic" loop>
-  <source src="love.mp3" type="audio/mpeg">
-</audio>
-  <div class="card">
-    <img src="us.jpg" alt="Our Photo"
-style="width:100%; border-radius:15px; margin:15px 0;">
-    <h1>Happy Valentine’s Day Bhagyashri❤</h1>
-    <p id="message">Will you be my Valentine Bhagyashri?😍</p>
-    <div id="choiceButtons">
-  <button onclick="sayYes()">Yes 💕</button>
-  <button onclick="sayNo()">No 🙈</button>
+
+<div class="card">
+  <img src="us.jpg" alt="Us ❤️">
+  <div id="message">Will you be my Valentine? 💖</div>
+  <button id="actionBtn">Tap to Start 💕</button>
 </div>
 
-<button id="nextBtn" onclick="changeMessage()" style="display:none;">
-  ➡️
-</button>
+<audio id="music" src="love.mp3" loop></audio>
 
-<button onclick="playMusic()">▶ Play Music</button>
-  </div>  
-  <script>
-  
-    const messages = [
-      "You make my world brighter just by being in it.",
-      "You make my heart to do Happy things😊",
-      "With youevery moment feels like home♥️",
-      "I still get butterflies because of you🦋",
-      "You are my favorite notification📲",
-      "My heart chose you, and it keep choosing you💖"
-    ];
-    let index = 0;
+<script>
+const messages = [
+  "You make my world brighter just by being in it.",
+  "You make my heart to do Happy things😊",
+  "With you every moment feels like home♥️",
+  "I still get butterflies because of you🦋",
+  "You are my favorite notification📲",
+  "My heart chose you, and it keep choosing you💖"
+];
 
- 
+const backgrounds = [
+  "linear-gradient(135deg, #ff758c, #ff7eb3)",
+  "linear-gradient(135deg, #ff9a9e, #fad0c4)",
+  "linear-gradient(135deg, #fbc2eb, #a6c1ee)",
+  "linear-gradient(135deg, #ffecd2, #fcb69f)",
+  "linear-gradient(135deg, #a18cd1, #fbc2eb)",
+  "linear-gradient(135deg, #ff6a88, #ff99ac)"
+];
 
-function sayYes() {
-  document.getElementById("message").textContent =
-    "Yay! I knew it 😍💖";
+let index = -1;
+let started = false;
 
-  document.getElementById("choiceButtons").style.display = "none";
-  document.getElementById("nextBtn").style.display = "inline-block";
+const btn = document.getElementById("actionBtn");
+const msg = document.getElementById("message");
+const music = document.getElementById("music");
+
+btn.addEventListener("click", () => {
+  if (!started) {
+    music.play();
+    btn.textContent = "Next 💌";
+    started = true;
+  }
+
+  index++;
+  if (index < messages.length) {
+    msg.textContent = messages[index];
+    document.body.style.background = backgrounds[index];
+    createHearts();
+  } else {
+    msg.textContent = "Forever starts with us ❤️";
+    btn.style.display = "none";
+  }
+});
+
+function createHearts() {
+  for (let i = 0; i < 8; i++) {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "♥";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (16 + Math.random() * 20) + "px";
+    heart.style.animationDuration = (4 + Math.random() * 4) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 6000);
+  }
 }
+</script>
 
-function sayNo() {
-  document.getElementById("message").textContent =
-    "Heyyy 😳 try again…";
-
-  // optional playful behavior
-}
-
-function changeMessage() {
-  index = (index + 1) % messages.length;
-  document.getElementById("message").textContent = messages[index];
-}
-
-/* hearts keep working */
-function createHeart() {
-  const heart = document.createElement('div');
-  heart.className = 'heart';
-  heart.textContent = '❤️';
-  heart.style.left = Math.random() * 100 + 'vw';
-  heart.style.animationDuration = (4 + Math.random() * 3) + 's';
-  document.body.appendChild(heart);
-  setTimeout(() => heart.remove(), 7000);
-}
-setInterval(createHeart, 500);
-
-function playMusic() {
-  document.getElementById("bgMusic").play();
-}
-
-    setInterval(createHeart, 500);
-function playMusic() {
-  document.getElementById("bgMusic").play();
-}
+</body>
+</html>
